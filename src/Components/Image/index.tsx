@@ -22,28 +22,28 @@ const Image : React.FC<{
     const render:boolean = src.length > 0;
     return(
         <div>
-                <input
-                    id={"image__input"}
-                    type={"file"}
-                    accept={"image/png, image/jpeg"}
-                    onChange={
-                    (event)=>processImage(event, (result)=> {
-                            setAlt("detecting face . . .");
-                            let file = event.target.files?.item(0);
-                            DetectFaces(result,file as File,(err:AWSError, data:DetectFacesResponse)=> {
-                                if (err) console.log(err, err.stack); // an error occurred
-                                else {
-                                    setAlt("");
-                                    setSrc(URL.createObjectURL(file as File));
-                                    setResult(data);
-                                }
-                            });
-                    })}
-                    onClick={()=> {
-                        setSrc("");
-                        setResult({} as DetectFacesResponse)
-                    }}
-                />
+            <input
+                type={"file"}
+                id={"image__input"}
+                accept={"image/png, image/jpeg"}
+                onChange={
+                (event)=>processImage(event, (result)=> {
+                        setAlt("detecting face . . .");
+                        let file = event.target.files?.item(0);
+                        DetectFaces(result,file as File,(err:AWSError, data:DetectFacesResponse)=> {
+                            if (err) console.log(err, err.stack); // an error occurred
+                            else {
+                                setAlt("");
+                                setSrc(URL.createObjectURL(file as File));
+                                setResult(data);
+                            }
+                        });
+                })}
+                onClick={()=> {
+                    setSrc("");
+                    setResult({} as DetectFacesResponse)
+                }}
+            />
             <div className={`image ${render}`}>
                 {render
                     &&

@@ -5,7 +5,13 @@ div.image{
     align-items: center;
     width: fit-content;
     height: fit-content;
+    margin-top: 1.2rem;
 }
 div.image.false{
     display: none !important;
+}
+#image__input{
+    position: absolute;
+    top: 0;
+    left: 0;
 }
