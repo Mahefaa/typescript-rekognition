@@ -4,7 +4,7 @@ const TableItem : React.FC<{title?:string, body:any,bold:boolean}> = (props)=>{
     let {body, title,bold} = props;
     return(
         <tr>
-            {!bold ? <td>{title}:</td> : <th>{title}</th>}
+            {!bold ? <td className={"title"}>{title}</td> : <th>{title}</th>}
             <td>{renderData(body)}</td>
         </tr>
     );
