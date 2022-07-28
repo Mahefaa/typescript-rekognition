@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import './App.css';
-import AWS from 'aws-sdk';
 import {DetectFacesResponse} from "aws-sdk/clients/rekognition";
 import './Components/Table';
 import Table from "./Components/Table";
@@ -13,7 +12,7 @@ function App() {
   const FaceDetails = result?.FaceDetails;
   //const OrientationCorrection = result?.OrientationCorrection;
   let [current,setCurrent] = useState<number>(0);
-  let image = {height:550,width:550};
+  let image = {height:680,width:680};
   return (
     <div className="App">
       <Image
