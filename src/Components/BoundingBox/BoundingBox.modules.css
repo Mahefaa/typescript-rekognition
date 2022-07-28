@@ -1,0 +1,13 @@
+.box .bounding__id{
+    display: none;
+}
+.box:hover .bounding__id{
+    display:block;
+}
+.box:hover{
+    background-color: white;
+    opacity: 80%;
+}
+.current{
+    border: red dotted !important;
+}
