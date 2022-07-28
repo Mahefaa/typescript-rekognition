@@ -22,7 +22,7 @@ function renderData(data:[{}]|{}){
         return data.toString();
     }
     else{
-        return (<Table list={data} className={"sideTable"}/>);
+        return (<Table faceDetail={data} className={"sideTable"}/>);
     }
 }
 

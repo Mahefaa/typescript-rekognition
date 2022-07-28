@@ -2,26 +2,30 @@ import React from "react";
 import {FaceDetail} from "aws-sdk/clients/rekognition";
 import './table.modules.css'
 import TableItem from "../TableItem";
-const Table : React.FC<{list:FaceDetail,className?:string,bold?:boolean,id?:number}> = (props)=>{
-    const {list,className,bold,id} = props;
-    const faceDetail = list || {} as FaceDetail;
-    const titles = Object.keys(faceDetail);
+const Table : React.FC<{faceDetail?:FaceDetail,className?:string,bold?:boolean,id?:number}> = (props)=>{
+    const {faceDetail,className,bold,id} = props;
+    const titles = Object.keys(faceDetail||{});
     return(
-        <>
-            <h3>{id!==undefined?`Face : ${id}`:""}</h3>
-            <table className={className}>
-                <tbody>
-                {Object.values(faceDetail).map((detail,index)=>(
-                    <TableItem
-                        key={`${titles[index]}~${detail}`}
-                        title={titles[index]}
-                        body={detail}
-                        bold={bold||false}
-                    />
-                ))}
-                </tbody>
-            </table>
-        </>
+    <>
+        {
+            titles.length>0 &&
+            <>
+                <h3>{id !== undefined ? `Face : ${id}` : ""}</h3>
+                <table className={className}>
+                    <tbody>
+                        {Object.values(faceDetail || {}).map((detail, index) => (
+                        <TableItem
+                            key={`${titles[index]}~${detail}`}
+                            title={titles[index]}
+                            body={detail}
+                            bold={bold || false}
+                        />
+                        ))}
+                    </tbody>
+                </table>
+            </>
+        }
+    </>
     )
 }
 export const VerticalTable:React.FC<{data:{}[],className?:string}> = (props)=>{

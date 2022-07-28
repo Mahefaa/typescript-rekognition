@@ -9,8 +9,18 @@ const Pagination : React.FC<{
     let {maxPage, minPage, setCurrent, current} = props;
     return(
         <>
-            <input type="button" value="Previous" onClick={()=>setCurrent((prevState)=>prevState-1)} disabled={current-1<minPage}/>
-            <input type="button" value="Next" onClick={()=>setCurrent(prevState => prevState+1)} disabled={current+1>=maxPage}/>
+            <input
+                type="button"
+                value="Previous"
+                onClick={()=>setCurrent((prevState)=>prevState-1)}
+                hidden={(current-1) < minPage}
+            />
+            <input
+                type="button"
+                value="Next"
+                onClick={()=>setCurrent(prevState => prevState+1)}
+                hidden={(current+1) >= maxPage}
+            />
         </>
     )
 }

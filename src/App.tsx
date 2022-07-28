@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import './App.css';
 import AWS from 'aws-sdk';
-import {DetectFacesResponse, FaceDetail} from "aws-sdk/clients/rekognition";
+import {DetectFacesResponse} from "aws-sdk/clients/rekognition";
 import './Components/Table';
 import Table from "./Components/Table";
-import {MockFaceDetails} from "./Components/MockData/Mock";
+//import {MockFaceDetails} from "./Components/MockData/Mock";
 import Pagination from "./Components/Pagination/Pagination";
 import Image from "./Components/Image";
 function App() {
@@ -12,63 +12,40 @@ function App() {
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: process.env.REACT_APP_POOL_ID as string
   });
-  let [result,setResult]=useState<DetectFacesResponse>();
+  let [result,setResult]=useState<DetectFacesResponse>({} as DetectFacesResponse);
   const FaceDetails = result?.FaceDetails;
-  const OrientationCorrection = result?.OrientationCorrection;
-  let [src,setSrc] = useState<string>("");
-  let [cli,setCli] = useState<string>("waiting for image ...");
+  //const OrientationCorrection = result?.OrientationCorrection;
   let [current,setCurrent] = useState<number>(0);
   let width:number = 550;
   let height:number = 550;
   let image = {height:height,width:width};
-  //Load selected image and decode image bytes for Rekognition DetectFaces API
-  function ProcessImage(event:any) {
-    // Configure the credential provider to use your identity pool
-    let file:any = event.target.files.item(0);
-    new Response(file).arrayBuffer().then((result)=> {
-      setCli("detecting face . . .");
-      DetectFaces(result,file);
-    })
-  }
-  function DetectFaces(imageData:ArrayBuffer,file:File) {
-    let rekognition = new AWS.Rekognition();
-    let params = {
-      Image: {
-        Bytes: imageData
-      },
-      Attributes: [
-        'ALL',
-      ]
-    };
-    rekognition.detectFaces(params, function (err:any, data:DetectFacesResponse) {
-      if (err) console.log(err, err.stack); // an error occurred
-      else {
-        setCli("");
-        setSrc(URL.createObjectURL(file));
-        setResult(data);
-      }
-    });
-  }
   return (
     <div className="App">
+      <Image
+          width={width}
+          height={height}
+          FaceDetails={FaceDetails}
+          image={image}
+          setCurrent={setCurrent}
+          current={current}
+          setResult={setResult}
+      />
 
-      <div className={"image"}>
-        <input type={"file"} accept={"image/png, image/jpeg"} onChange={ProcessImage} onClick={()=>{
-          setSrc("");
-          setResult({} as DetectFacesResponse)
-        }}/>
-        <Image src={src} cli={cli} width={width} height={height} FaceDetails={FaceDetails||MockFaceDetails} image={image} setCurrent={setCurrent} current={current}/>
-      </div>
       <div className={"container"}>
-        {src &&
-        <>
-            <Pagination minPage={0} maxPage={FaceDetails?.length || 0} setCurrent={setCurrent} current={current}/>
 
+        {result !== {} as DetectFacesResponse &&
+        <>
+            <Pagination
+                minPage={0}
+                current={current}
+                setCurrent={setCurrent}
+                maxPage={FaceDetails?.length || 0}
+            />
             <Table
-                key={`${FaceDetails?.at(current)?.AgeRange}~${FaceDetails?.at(current)?.BoundingBox}`}
                 id={current}
-                list={(FaceDetails?.at(current) || MockFaceDetails.at(0)) as FaceDetail}
                 className={"mainTable"} bold={true}
+                key={`${FaceDetails?.at(current)?.AgeRange}~${FaceDetails?.at(current)?.BoundingBox}`}
+                faceDetail={FaceDetails?.at(current)}
             />
         </>
         }
