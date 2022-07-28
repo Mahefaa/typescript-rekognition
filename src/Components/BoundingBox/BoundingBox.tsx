@@ -1,5 +1,6 @@
 import CSS from 'csstype';
 import React, {Dispatch, SetStateAction} from "react";
+import "./BoundingBox.modules.css";
 const BoundingBox : React.FC<{
     left:number,
     top:number,
@@ -26,7 +27,9 @@ const BoundingBox : React.FC<{
 
     }
     return(
-        <div style={style} className={`box ${id} ${current===id?"current":""}`} onClick={()=>setCurrent(id)}>
+        <div style={style}
+             className={`box ${id} ${current===id?"current":""}`}
+             onClick={()=>setCurrent(id)}>
             <span className={"bounding__id"}>Face : {id}</span>
         </div>
     )
