@@ -5,8 +5,8 @@ import {DetectFacesResponse, FaceDetail} from "aws-sdk/clients/rekognition";
 import './Components/Table';
 import Table from "./Components/Table";
 import {MockFaceDetails} from "./Components/MockData/Mock";
-import BoundingBox from "./Components/BoundingBox/BoundingBox";
 import Pagination from "./Components/Pagination/Pagination";
+import Image from "./Components/Image";
 function App() {
   AWS.config.region = process.env.REACT_APP_REGION; // Region
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -57,19 +57,7 @@ function App() {
           setSrc("");
           setResult({} as DetectFacesResponse)
         }}/>
-        <img src={src} alt={cli} width={width} height={height}/>
-        {src.length && FaceDetails?.map((item,id)=>
-            <BoundingBox
-              left={item?.BoundingBox?.Left || 0}
-              top={item?.BoundingBox?.Top || 0}
-              width={item?.BoundingBox?.Width || 0}
-              height={item?.BoundingBox?.Height || 0}
-              image={image}
-              color={"red"}
-              id={id}
-              setCurrent={setCurrent}
-              current={current}
-            />)}
+        <Image src={src} cli={cli} width={width} height={height} FaceDetails={FaceDetails||MockFaceDetails} image={image} setCurrent={setCurrent} current={current}/>
       </div>
       <div className={"container"}>
         {src &&
@@ -80,7 +68,8 @@ function App() {
                 key={`${FaceDetails?.at(current)?.AgeRange}~${FaceDetails?.at(current)?.BoundingBox}`}
                 id={current}
                 list={(FaceDetails?.at(current) || MockFaceDetails.at(0)) as FaceDetail}
-                className={"mainTable"} bold={true}/>
+                className={"mainTable"} bold={true}
+            />
         </>
         }
       </div>
