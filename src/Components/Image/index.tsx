@@ -44,7 +44,7 @@ const Image : React.FC<{
                         setResult({} as DetectFacesResponse)
                     }}
                 />
-            <div className={"image"} hidden={!render}>
+            <div className={`image ${render}`}>
                 {render
                     &&
                     <img
