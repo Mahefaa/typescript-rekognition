@@ -1,8 +1,8 @@
-import BoundingBox from "../BoundingBox/BoundingBox";
+import BoundingBox from "../BoundingBox";
 import React, {Dispatch, SetStateAction, useState} from "react";
 import {DetectFacesResponse, FaceDetailList} from "aws-sdk/clients/rekognition";
-import './Image.modules.css';
-import ImageInput from "./ImageInput";
+import './index.modules.css';
+import ImageInput from "../ImageInput";
 /**
  * Displays input for file and image + image Data as Table when results are available
  * @param props : {
@@ -23,36 +23,39 @@ const Image : React.FC<{
     setCurrent:Dispatch<SetStateAction<number>>,
     setResult:Dispatch<SetStateAction<DetectFacesResponse|undefined>>
 }> = (props)=>{
-    const {FaceDetails,current, height, image, setCurrent, width,setResult} = props;
+    const {FaceDetails, current, height, image, setCurrent,setResult, width} = props;
     const [src,setSrc] = useState<string>("");
     const render:boolean = src.length > 0;
     return(
-        <div className={"flex"}>
+        <div className={`flex`}>
             <ImageInput setSrc={setSrc} setResult={setResult}/>
-            <div className={`image ${render} flex`}>
-                {render
-                    &&
-                    <img
-                        src={src}
-                        alt={"Faces"}
-                        width={width}
-                        height={height}
-                    />
-                }
-                {render && FaceDetails?.map((item, id) =>
-                    <BoundingBox
-                        key={`${item.BoundingBox?.Left}~${item.BoundingBox?.Top}`}
-                        left={item?.BoundingBox?.Left || 0}
-                        top={item?.BoundingBox?.Top || 0}
-                        width={item?.BoundingBox?.Width || 0}
-                        height={item?.BoundingBox?.Height || 0}
-                        image={image}
-                        color={"transparent"}
-                        id={id}
-                        setCurrent={setCurrent}
-                        current={current}
-                    />)}
-            </div>
+            {render &&
+                <div className={"image"}>
+                    {
+                        <img
+                            src={src}
+                            alt={"Faces"}
+                            width={width}
+                            height={height}
+                            id={"Faces"}
+                        />
+                    }
+                    {FaceDetails?.map((item, id) =>
+                        <BoundingBox
+                            key={`${item.BoundingBox?.Left}~${item.BoundingBox?.Top}`}
+                            left={item?.BoundingBox?.Left || 0}
+                            top={item?.BoundingBox?.Top || 0}
+                            width={item?.BoundingBox?.Width || 0}
+                            height={item?.BoundingBox?.Height || 0}
+                            image={image}
+                            color={"transparent"}
+                            id={id}
+                            setCurrent={setCurrent}
+                            current={current}
+                        />
+                    )}
+                </div>
+            }
         </div>
     )
 }

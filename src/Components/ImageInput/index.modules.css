@@ -1,0 +1,21 @@
+#app__top{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,50%);
+}
+#app__top:hover label{
+    color: grey;
+
+}
+#app__image__input{
+    display: none;
+}
+@keyframes typing {
+    from{
+        width: 20%;
+    }
+    to{
+        width: 200%;
+    }
+}

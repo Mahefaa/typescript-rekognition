@@ -1,6 +1,6 @@
 import CSS from 'csstype';
 import React, {Dispatch, SetStateAction} from "react";
-import "./BoundingBox.modules.css";
+import "./index.modules.css";
 
 /**
  * Bounding box that appears following the location infos given as props

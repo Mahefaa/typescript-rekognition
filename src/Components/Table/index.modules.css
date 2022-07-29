@@ -1,10 +1,10 @@
 .mainTable,.sideTable,.verticalTable{
-    width: 40vw;
+    width: calc(80vw - 300px);
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
+    min-width: 10vw;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 .mainTable th, .mainTable td{
@@ -26,4 +26,18 @@
 }
 .container{
     overflow-y: scroll;
+}
+@media screen and (max-device-width: 850px){
+    .mainTable,.sideTable{
+        width: 100%;
+    }
+    .verticalTable{
+        flex-shrink: revert;
+    }
+}
+@media screen and (max-device-width: 560px){
+    *{
+        margin: 0 0 !important;
+        font-size: 2em;
+    }
 }

@@ -1,21 +1,21 @@
 import React, {useState} from 'react';
 import './App.css';
 import {DetectFacesResponse} from "aws-sdk/clients/rekognition";
-import './Components/Table';
 import Table from "./Components/Table";
 //import {MockFaceDetails} from "./Components/MockData/Mock";
-import Pagination from "./Components/Pagination/Pagination";
+import Pagination from "./Components/Pagination";
 import Image from "./Components/Image";
 import './Components/login';
+//import Loading from "./Components/Loading";
 function App() {
   let [result,setResult]=useState<DetectFacesResponse>();
   const FaceDetails = result?.FaceDetails;
   //const OrientationCorrection = result?.OrientationCorrection;
   let [current,setCurrent] = useState<number>(0);
-  let image = {height:680,width:680};
+  let image = {height:300,width:300};
   return (
     <div className="App">
-      <Image
+        <Image
           image={image}
           current={current}
           width={image.width}
@@ -23,7 +23,7 @@ function App() {
           setResult={setResult}
           setCurrent={setCurrent}
           FaceDetails={FaceDetails}
-      />
+        />
       <div className={"container"}>
         <Pagination
             minPage={0}

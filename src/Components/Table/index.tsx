@@ -1,6 +1,6 @@
 import React from "react";
 import {Emotions, FaceDetail, Landmarks} from "aws-sdk/clients/rekognition";
-import './table.modules.css'
+import './index.modules.css'
 import TableItem from "../TableItem";
 
 /**

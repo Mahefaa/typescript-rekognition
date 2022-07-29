@@ -17,7 +17,7 @@ const Pagination : React.FC<{
 }>=(props)=>{
     let {maxPage, minPage, setCurrent, current} = props;
     return(
-        <>
+        <div className={"pagination"}>
             <input
                 type="button"
                 value="Previous"
@@ -30,7 +30,7 @@ const Pagination : React.FC<{
                 onClick={()=>setCurrent(prevState => prevState+1)}
                 hidden={(current+1) >= maxPage}
             />
-        </>
+        </div>
     )
 }
 export default Pagination;
