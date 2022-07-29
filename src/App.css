@@ -20,3 +20,10 @@
     align-items: center;
   }
 }
+@media screen and (max-device-width: 400px){
+  .App{
+    overflow-x: scroll;
+    align-items: baseline;
+    width: fit-content;
+  }
+}

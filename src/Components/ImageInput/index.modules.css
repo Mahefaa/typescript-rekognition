@@ -1,8 +1,7 @@
 #app__top{
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translate(-50%,50%);
+    left: 0;
 }
 #app__top:hover label{
     color: grey;
@@ -11,11 +10,13 @@
 #app__image__input{
     display: none;
 }
-@keyframes typing {
-    from{
-        width: 20%;
+@media screen and (max-device-width: 850px) {
+    #app__top{
+        left: 50%;
     }
-    to{
-        width: 200%;
+}
+@media screen and (max-device-width: 560px){
+    #app__top{
+        left: 0;
     }
 }

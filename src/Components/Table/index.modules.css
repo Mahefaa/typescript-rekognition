@@ -28,16 +28,26 @@
     overflow-y: scroll;
 }
 @media screen and (max-device-width: 850px){
-    .mainTable,.sideTable{
+    .mainTable,.sideTable,.verticalTable{
         width: 100%;
-    }
-    .verticalTable{
-        flex-shrink: revert;
     }
 }
 @media screen and (max-device-width: 560px){
-    *{
-        margin: 0 0 !important;
-        font-size: 2em;
+    .mainTable{
+        width: 100%;
+    }
+    .mainTable th{
+        font-size: 0.7em;
+        padding: 2px 2px;
+    }
+    .mainTable td{
+        font-size: 0.9em;
+        padding: 1px 5px;
+    }
+    .sideTable{
+        width: 10%;
+    }
+    .verticalTable{
+        width: 10%;
     }
 }
