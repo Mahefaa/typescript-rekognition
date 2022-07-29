@@ -21,7 +21,7 @@ const Image : React.FC<{
     const [alt,setAlt] = useState<string>("");
     const render:boolean = src.length > 0;
     return(
-        <div>
+        <div className={"flex"}>
             <input
                 type={"file"}
                 id={"image__input"}
@@ -44,7 +44,7 @@ const Image : React.FC<{
                     setResult({} as DetectFacesResponse)
                 }}
             />
-            <div className={`image ${render}`}>
+            <div className={`image ${render} flex`}>
                 {render
                     &&
                     <img
@@ -56,6 +56,7 @@ const Image : React.FC<{
                 }
                 {render && FaceDetails?.map((item, id) =>
                     <BoundingBox
+                        key={`${item.BoundingBox?.Left}~${item.BoundingBox?.Top}`}
                         left={item?.BoundingBox?.Left || 0}
                         top={item?.BoundingBox?.Top || 0}
                         width={item?.BoundingBox?.Width || 0}

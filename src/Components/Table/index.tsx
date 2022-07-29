@@ -1,5 +1,5 @@
 import React from "react";
-import {FaceDetail} from "aws-sdk/clients/rekognition";
+import {Emotions, FaceDetail, Landmarks} from "aws-sdk/clients/rekognition";
 import './table.modules.css'
 import TableItem from "../TableItem";
 const Table : React.FC<{faceDetail?:FaceDetail,className?:string,bold?:boolean,id?:number}> = (props)=>{
@@ -10,12 +10,12 @@ const Table : React.FC<{faceDetail?:FaceDetail,className?:string,bold?:boolean,i
         {
             titles.length>0 &&
             <>
-                <h3>{id !== undefined ? `Face : ${id}` : ""}</h3>
+                <h3 id={`title`}>{id !== undefined ? `Face : ${id}` : ""}</h3>
                 <table className={className}>
                     <tbody>
-                        {Object.values(faceDetail || {}).map((detail, index) => (
+                        {Object.values(faceDetail || {}).map((detail:{}, index) => (
                         <TableItem
-                            key={`${titles[index]}~${detail}`}
+                            key={`${titles[index]}`}
                             title={titles[index]}
                             body={detail}
                             bold={bold || false}
@@ -28,7 +28,7 @@ const Table : React.FC<{faceDetail?:FaceDetail,className?:string,bold?:boolean,i
     </>
     )
 }
-export const VerticalTable:React.FC<{data:{}[],className?:string}> = (props)=>{
+export const VerticalTable:React.FC<{data:Emotions|Landmarks,className?:string}> = (props)=>{
     let {data,className} = props;
     return(
         <table className={className}>
@@ -43,7 +43,7 @@ export const VerticalTable:React.FC<{data:{}[],className?:string}> = (props)=>{
             </thead>
             <tbody>
             {data.map((item) => (
-                <tr key={item.toString()}>
+                <tr key={item.Type}>
                     {Object.values(item).map((value)=>(
                         <td key={value as string}>{value as string}</td>
                     ))

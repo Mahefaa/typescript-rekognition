@@ -1,5 +1,6 @@
 import React from "react";
 import Table, {VerticalTable} from "../Table";
+import {Emotions, FaceDetail, Landmarks} from "aws-sdk/clients/rekognition";
 const TableItem : React.FC<{title?:string, body:any,bold:boolean}> = (props)=>{
     let {body, title,bold} = props;
     return(
@@ -10,7 +11,7 @@ const TableItem : React.FC<{title?:string, body:any,bold:boolean}> = (props)=>{
     );
 }
 
-function renderData(data:[{}]|{}){
+function renderData(data:Emotions|Landmarks|FaceDetail|number|string|boolean){
     if(data instanceof Array){
         return (
             <div className={"container"}>

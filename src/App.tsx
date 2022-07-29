@@ -37,7 +37,7 @@ function App() {
             id={current}
             className={"mainTable"}
             faceDetail={FaceDetails?.at(current)}
-            key={`${FaceDetails?.at(current)?.AgeRange}~${FaceDetails?.at(current)?.BoundingBox}`}
+            key={`${FaceDetails?.at(current)?.BoundingBox?.Top}~${FaceDetails?.at(current)?.BoundingBox?.Width}`}
         />
       </div>
     </div>
