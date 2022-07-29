@@ -33,6 +33,11 @@
     }
 }
 @media screen and (max-device-width: 560px){
+    .mainTable th, .mainTable td{
+        padding: 3px 2px;
+    }
+}
+@media screen and (max-device-width: 430px){
     .mainTable{
         width: 100%;
     }

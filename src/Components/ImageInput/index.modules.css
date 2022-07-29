@@ -12,10 +12,15 @@
 }
 @media screen and (max-device-width: 850px) {
     #app__top{
-        left: 50%;
+        left: 35%;
     }
 }
 @media screen and (max-device-width: 560px){
+    #app__top{
+        left: 10%;
+    }
+}
+@media screen and (max-device-width: 430px){
     #app__top{
         left: 0;
     }
