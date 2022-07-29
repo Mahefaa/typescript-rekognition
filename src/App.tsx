@@ -24,7 +24,7 @@ function App() {
           setCurrent={setCurrent}
           FaceDetails={FaceDetails}
       />
-      <div className={"container"} ref={"id"}>
+      <div className={"container"}>
         <Pagination
             minPage={0}
             current={current}
