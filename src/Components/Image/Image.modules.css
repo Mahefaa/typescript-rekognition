@@ -6,6 +6,7 @@ div.image{
     width: fit-content;
     height: fit-content;
     margin-top: 1.2rem;
+    position: relative;
 }
 div.image.false{
     display: none !important;

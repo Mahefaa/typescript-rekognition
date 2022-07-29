@@ -61,7 +61,7 @@ const Image : React.FC<{
                         width={item?.BoundingBox?.Width || 0}
                         height={item?.BoundingBox?.Height || 0}
                         image={image}
-                        color={"red"}
+                        color={"transparent"}
                         id={id}
                         setCurrent={setCurrent}
                         current={current}

@@ -28,7 +28,7 @@ const BoundingBox : React.FC<{
     }
     return(
         <div style={style}
-             className={`box ${id} ${current===id?"current":""}`}
+             className={`box ${current===id?"current":""} ${id}`}
              onClick={()=>setCurrent(id)}>
             <span className={"bounding__id"}>Face : {id}</span>
         </div>
