@@ -4,6 +4,7 @@ import {DetectFacesResponse, FaceDetailList} from "aws-sdk/clients/rekognition";
 import './Image.modules.css';
 import {AWSError} from "aws-sdk";
 import DetectFaces from "../DetectFaces";
+import processImage from "../processImage";
 const Image : React.FC<{
     width:number,
     height:number,
@@ -18,7 +19,6 @@ const Image : React.FC<{
 }> = (props)=>{
     let {FaceDetails,current, height, image, setCurrent, width,setResult} = props;
     const [src,setSrc] = useState<string>("");
-    const [alt,setAlt] = useState<string>("");
     const render:boolean = src.length > 0;
     return(
         <div className={"flex"}>
@@ -28,12 +28,10 @@ const Image : React.FC<{
                 accept={"image/png, image/jpeg"}
                 onChange={
                 (event)=>processImage(event, (result)=> {
-                        setAlt("detecting face . . .");
                         let file = event.target.files?.item(0);
                         DetectFaces(result,file as File,(err:AWSError, data:DetectFacesResponse)=> {
                             if (err) console.log(err, err.stack); // an error occurred
                             else {
-                                setAlt("");
                                 setSrc(URL.createObjectURL(file as File));
                                 setResult(data);
                             }
@@ -49,7 +47,7 @@ const Image : React.FC<{
                     &&
                     <img
                         src={src}
-                        alt={alt}
+                        alt={"Image With Faces"}
                         width={width}
                         height={height}
                     />
@@ -70,9 +68,5 @@ const Image : React.FC<{
             </div>
         </div>
     )
-}
-//Load selected image and decode image bytes for Rekognition DetectFaces API
-function processImage(event:any,callback:(arrayBuffer:ArrayBuffer)=>void) {
-    new Response(event.target.files.item(0)).arrayBuffer().then(callback)
 }
 export default Image;
