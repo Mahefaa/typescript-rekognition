@@ -2,10 +2,7 @@ import BoundingBox from "../BoundingBox/BoundingBox";
 import React, {Dispatch, SetStateAction, useState} from "react";
 import {DetectFacesResponse, FaceDetailList} from "aws-sdk/clients/rekognition";
 import './Image.modules.css';
-import {AWSError} from "aws-sdk";
-import DetectFaces from "../DetectFaces";
-import processImage from "../processImage";
-
+import ImageInput from "./ImageInput";
 /**
  * Displays input for file and image + image Data as Table when results are available
  * @param props : {
@@ -26,31 +23,12 @@ const Image : React.FC<{
     setCurrent:Dispatch<SetStateAction<number>>,
     setResult:Dispatch<SetStateAction<DetectFacesResponse|undefined>>
 }> = (props)=>{
-    let {FaceDetails,current, height, image, setCurrent, width,setResult} = props;
+    const {FaceDetails,current, height, image, setCurrent, width,setResult} = props;
     const [src,setSrc] = useState<string>("");
     const render:boolean = src.length > 0;
     return(
         <div className={"flex"}>
-            <input
-                type={"file"}
-                id={"image__input"}
-                accept={"image/png, image/jpeg"}
-                onChange={
-                (event)=>processImage(event, (result)=> {
-                        let file = event.target.files?.item(0);
-                        DetectFaces(result,file as File,(err:AWSError, data:DetectFacesResponse)=> {
-                            if (err) console.log(err, err.stack); // an error occurred
-                            else {
-                                setSrc(URL.createObjectURL(file as File));
-                                setResult(data);
-                            }
-                        });
-                })}
-                onClick={()=> {
-                    setSrc("");
-                    setResult({} as DetectFacesResponse)
-                }}
-            />
+            <ImageInput setSrc={setSrc} setResult={setResult}/>
             <div className={`image ${render} flex`}>
                 {render
                     &&
