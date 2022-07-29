@@ -8,7 +8,7 @@ import Pagination from "./Components/Pagination/Pagination";
 import Image from "./Components/Image";
 import './Components/login';
 function App() {
-  let [result,setResult]=useState<DetectFacesResponse>({} as DetectFacesResponse);
+  let [result,setResult]=useState<DetectFacesResponse>();
   const FaceDetails = result?.FaceDetails;
   //const OrientationCorrection = result?.OrientationCorrection;
   let [current,setCurrent] = useState<number>(0);
@@ -16,16 +16,15 @@ function App() {
   return (
     <div className="App">
       <Image
+          image={image}
+          current={current}
           width={image.width}
           height={image.height}
-          FaceDetails={FaceDetails}
-          image={image}
-          setCurrent={setCurrent}
-          current={current}
           setResult={setResult}
+          setCurrent={setCurrent}
+          FaceDetails={FaceDetails}
       />
-
-      <div className={"container"}>
+      <div className={"container"} ref={"id"}>
         <Pagination
             minPage={0}
             current={current}

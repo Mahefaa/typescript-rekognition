@@ -1,6 +1,17 @@
 import CSS from 'csstype';
 import React, {Dispatch, SetStateAction} from "react";
 import "./BoundingBox.modules.css";
+
+/**
+ * Bounding box that appears following the location infos given as props
+ * @param props : {
+ *     left,top,width,height : box location,
+ *     image : image size,
+ *     color : box border color,
+ *     id : box id if there are multiple boxes,
+ *     [current ,setCurrent ] useState hook to change currently displayed box's id
+ * }
+ */
 const BoundingBox : React.FC<{
     left:number,
     top:number,

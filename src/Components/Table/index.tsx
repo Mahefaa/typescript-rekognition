@@ -2,6 +2,16 @@ import React from "react";
 import {Emotions, FaceDetail, Landmarks} from "aws-sdk/clients/rekognition";
 import './table.modules.css'
 import TableItem from "../TableItem";
+
+/**
+ * Table rendering data you got from ../Image's Rekognition results
+ * @param props :{
+ *     FaceDetail: containing table Item data
+ *     className : style
+ *     id : id of the currently described face
+ * }
+ * @constructor
+ */
 const Table : React.FC<{faceDetail?:FaceDetail,className?:string,bold?:boolean,id?:number}> = (props)=>{
     const {faceDetail,className,bold,id} = props;
     const titles = Object.keys(faceDetail||{});

@@ -1,3 +1,4 @@
+//some Mock data you can display if you don't want to waste internet or rekognition calls
 export let MockFaceDetails =
     [
         {

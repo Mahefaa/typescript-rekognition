@@ -5,6 +5,15 @@ import './Image.modules.css';
 import {AWSError} from "aws-sdk";
 import DetectFaces from "../DetectFaces";
 import processImage from "../processImage";
+
+/**
+ * Displays input for file and image + image Data as Table when results are available
+ * @param props : {
+ *     width,height : image Size
+ *     setResult : change table data at ../Table
+ *     Please refer to ../BoundingBox for the rest
+ * }
+ */
 const Image : React.FC<{
     width:number,
     height:number,
@@ -15,7 +24,7 @@ const Image : React.FC<{
         width:number
     },
     setCurrent:Dispatch<SetStateAction<number>>,
-    setResult:Dispatch<SetStateAction<DetectFacesResponse>>
+    setResult:Dispatch<SetStateAction<DetectFacesResponse|undefined>>
 }> = (props)=>{
     let {FaceDetails,current, height, image, setCurrent, width,setResult} = props;
     const [src,setSrc] = useState<string>("");
@@ -47,7 +56,7 @@ const Image : React.FC<{
                     &&
                     <img
                         src={src}
-                        alt={"Image With Faces"}
+                        alt={"Faces"}
                         width={width}
                         height={height}
                     />

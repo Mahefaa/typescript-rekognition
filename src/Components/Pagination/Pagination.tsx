@@ -1,5 +1,14 @@
 import React, {Dispatch, SetStateAction} from "react";
 
+/**
+ * Paginates ../Table
+ * @param props:{
+ *     minPage: lowest page you can go to
+ *     maxPage: highest page you can visit
+ *     [current,setCurrent]  useState changing the displayed page
+ * }
+ * @constructor
+ */
 const Pagination : React.FC<{
     minPage:number,
     maxPage:number,

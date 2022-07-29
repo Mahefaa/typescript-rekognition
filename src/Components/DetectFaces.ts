@@ -1,6 +1,6 @@
 import AWS, {AWSError, Rekognition} from "aws-sdk";
 import {DetectFacesResponse} from "aws-sdk/clients/rekognition";
-
+//Calls Amazon Rekognition DetectDaces on image imageData
 const detectFaces : (imageData: ArrayBuffer,
                      file: File, callback: (err: AWSError, data: Rekognition.DetectFacesResponse) => void)
     => void = (imageData,
