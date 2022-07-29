@@ -4,7 +4,7 @@ div.image{
     align-items: center;
     width: fit-content;
     height: fit-content;
-    margin-top: 1.2rem;
+    margin-top: 2rem;
     position: relative;
 }
 div.image.false{
@@ -13,5 +13,6 @@ div.image.false{
 #image__input{
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translate(-50%,50%);
 }
