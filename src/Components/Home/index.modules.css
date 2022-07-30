@@ -1,0 +1,54 @@
+#logo_container.false{
+    position:absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%,50%);
+    font-size: medium;
+}
+#cancel{
+    background-color: red;
+    font-size: x-small !important;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
+    color: white;
+}
+#logo_container.true{
+    position:absolute;
+    top: 0;
+    left: 1%;
+    font-size: small;
+}
+#loading_text{
+    align-self: center;
+}
+#logo_text{
+    display: none;
+    align-self: center;
+}
+#logo_container:hover #logo_text{
+    display: block;
+}
+@keyframes loading {
+    from{
+        rotate: 0deg;
+    }
+    to{
+        rotate:360deg;
+    }
+}
+@media screen and (max-device-width: 850px) {
+    #logo_container.true{
+        left: 31%;
+    }
+}
+@media screen and (max-device-width: 560px){
+    #logo_container.true{
+        left: 21%;
+    }
+}
+@media screen and (max-device-width: 430px){
+    #logo_container.true{
+        left: 12%;
+    }
+}
