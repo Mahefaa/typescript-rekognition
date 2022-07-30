@@ -10,19 +10,18 @@ import React, {Dispatch, SetStateAction} from "react";
  * @constructor
  */
 const Pagination : React.FC<{
-    minPage:number,
     maxPage:number,
     setCurrent:Dispatch<SetStateAction<number>>,
     current:number
 }>=(props)=>{
-    let {maxPage, minPage, setCurrent, current} = props;
+    let {maxPage,setCurrent, current} = props;
     return(
         <div className={"pagination"}>
             <input
                 type="button"
                 value="Previous"
                 onClick={()=>setCurrent((prevState)=>prevState-1)}
-                hidden={(current-1) < minPage}
+                hidden={(current-1) < 0}
             />
             <input
                 type="button"

@@ -1,8 +1,7 @@
 import BoundingBox from "../BoundingBox";
-import React, {Dispatch, SetStateAction, useState} from "react";
-import {DetectFacesResponse, FaceDetailList} from "aws-sdk/clients/rekognition";
+import React, {Dispatch, SetStateAction} from "react";
+import {FaceDetailList} from "aws-sdk/clients/rekognition";
 import './index.modules.css';
-import ImageInput from "../ImageInput";
 /**
  * Displays input for file and image + image Data as Table when results are available
  * @param props : {
@@ -15,20 +14,18 @@ const Image : React.FC<{
     width:number,
     height:number,
     current:number,
+    src:string,
     FaceDetails?:FaceDetailList,
     image:{
         height:number,
         width:number
     },
     setCurrent:Dispatch<SetStateAction<number>>,
-    setResult:Dispatch<SetStateAction<DetectFacesResponse|undefined>>
 }> = (props)=>{
-    const {FaceDetails, current, height, image, setCurrent,setResult, width} = props;
-    const [src,setSrc] = useState<string>("");
+    const {FaceDetails, current, height, image, setCurrent, width,src} = props;
     const render:boolean = src.length > 0;
     return(
         <div className={`flex`}>
-            <ImageInput setSrc={setSrc} setResult={setResult}/>
             {render &&
                 <div className={"image"}>
                     {

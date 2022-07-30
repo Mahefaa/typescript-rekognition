@@ -9,6 +9,7 @@
   gap: 1vw;
   flex-direction: row;
   overflow:hidden;
+  position:relative;
 }
 .flex{
   display: flex;

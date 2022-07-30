@@ -30,11 +30,11 @@ const BoundingBox : React.FC<{
     let {height: imageHeight, width: imageWidth} = image;
     const style : CSS.Properties= {
         position:'absolute',
-        top:`${(top * imageHeight).toPrecision(5)}px`,
-        left: `${(left * imageWidth).toPrecision(5)}px`,
+        top:`${(top * imageHeight)}px`,
+        left: `${(left * imageWidth)}px`,
         border:`5px solid ${color}`,
-        width:`${(width*imageWidth).toPrecision(5)}px`,
-        height:`${(height * imageHeight).toPrecision(5)}px`
+        width:`${(width*imageWidth)}px`,
+        height:`${(height * imageHeight)}px`
 
     }
     return(
