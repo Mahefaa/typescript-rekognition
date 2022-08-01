@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {DetectFacesResponse} from "aws-sdk/clients/rekognition";
 import Table from "./Components/Table";
-//import {MockFaceDetails} from "./Components/MockData/Mock";
 import Pagination from "./Components/Pagination";
 import Image from "./Components/Image";
 import './Components/login';
 import Home from "./Components/Home";
 import logo from './logo.svg'
-//import Loading from "./Components/Loading";
+import login from "./Components/login";
 function App() {
   let [result,setResult]=useState<DetectFacesResponse>();
   let [src,setSrc]=useState<string>("");
@@ -16,6 +15,9 @@ function App() {
   //const OrientationCorrection = result?.OrientationCorrection;
   let [current,setCurrent] = useState<number>(0);
   let image = {height:300,width:300};
+  useEffect(()=>{
+    login();
+  },[result]);
   return (
     <div className="App">
         <Home setSrc={setSrc} setResult={setResult} logoSrc={logo}/>
@@ -45,5 +47,4 @@ function App() {
     </div>
   );
 }
-//enlever le mock en prod
 export default App;
