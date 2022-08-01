@@ -1,5 +1,5 @@
 .mainTable,.sideTable,.verticalTable{
-    width: calc(80vw - 300px);
+    width: calc(87vw - 300px);
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
