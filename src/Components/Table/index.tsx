@@ -54,9 +54,15 @@ export const VerticalTable:React.FC<{data:Emotions|Landmarks,className?:string}>
             <tbody>
             {data.map((item) => (
                 <tr key={item.Type}>
-                    {Object.values(item).map((value)=>(
-                        <td key={value as string}>{value as string}</td>
-                    ))
+                    {Object.values(item).map((value)=>{
+                        if(typeof value === "number"){
+                            value = value.toFixed(2);
+                        }
+                        return (
+                        <td key={value}>{value as string}</td>
+                        )
+                    }
+                    )
                     }
                 </tr>
             ))}

@@ -34,6 +34,9 @@ function renderData(data:Emotions|Landmarks|FaceDetail|number|string|boolean){
         );
     }
     else if(typeof data !== "object"){
+        if(typeof data ==="number"){
+            return data.toFixed(2);
+        }
         return data.toString();
     }
     else{
